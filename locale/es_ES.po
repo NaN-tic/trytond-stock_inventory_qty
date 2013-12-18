@@ -1,0 +1,11 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "view:stock.inventory:"
+msgid "Calculate expected quantity in each inventory lines"
+msgstr "Calcula las cantidades estimadas por cada línea del inventario."
+
+msgctxt "view:stock.inventory:"
+msgid "Update Expected Quantity"
+msgstr "Actualizar cantidades estimadas"
