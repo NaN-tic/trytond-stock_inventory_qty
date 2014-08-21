@@ -4,6 +4,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
 <data>
     <xpath
         expr="/form/label[@id=&quot;empty&quot;]" position="replace">
+        <newline/>
         <button string="Update Expected Quantity"
             name="update_lines" colspan="2"
             help="Calculate expected quantity in each inventory lines"/>
