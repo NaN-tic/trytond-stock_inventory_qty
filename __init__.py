@@ -7,5 +7,6 @@ from .inventory import *
 def register():
     Pool.register(
         Inventory,
+        InventoryLine,
         module='stock_inventory_qty', type_='model')
 

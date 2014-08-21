@@ -5,7 +5,7 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 
-__all__ = ['Inventory']
+__all__ = ['Inventory', 'InventoryLine']
 __metaclass__ = PoolMeta
 
 
@@ -72,3 +72,11 @@ class Inventory:
                 values = line.update_values4complete(quantity, uom_id)
                 if values:
                     Line.write([line], values)
+
+
+class InventoryLine:
+    __name__ = 'stock.inventory.line'
+
+    @staticmethod
+    def default_quantity():
+        return 0.
