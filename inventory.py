@@ -21,6 +21,21 @@ class Inventory:
                     },
                 })
 
+    @classmethod
+    def copy(cls, inventories, default=None):
+        'Copy inventories updating lines instead of completing new lines'
+        with Transaction().set_context(copy_inventory=True):
+            new_inventories = super(Inventory, cls).copy(inventories,
+                    default=default)
+        cls.update_lines(new_inventories)
+        return new_inventories
+
+    @classmethod
+    def complete_lines(cls, inventories):
+        if Transaction().context.get('copy_inventory', False):
+            return
+        super(Inventory, cls).complete_lines(inventories)
+
     @staticmethod
     def update_lines(inventories):
         '''
