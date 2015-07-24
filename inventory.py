@@ -37,7 +37,7 @@ class Inventory:
 
             if not product_ids:
                 continue
-    
+
             # Compute product quantities
             with Transaction().set_context(stock_date_end=inventory.date):
                 pbl = Product.products_by_location([inventory.location.id],
@@ -58,6 +58,8 @@ class Inventory:
 
             # Update existing lines
             for line in inventory.lines:
+                # Refresh line (inventories with lot of lines fails read lines)
+                line = Line(line.id)
                 if not (line.product.active and
                         line.product.type == 'goods'
                         and not line.product.consumable):
