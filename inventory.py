@@ -31,10 +31,10 @@ class Inventory:
         return new_inventories
 
     @classmethod
-    def complete_lines(cls, inventories):
+    def complete_lines(cls, inventories, fill=False):
         if Transaction().context.get('copy_inventory', False):
             return
-        super(Inventory, cls).complete_lines(inventories)
+        super(Inventory, cls).complete_lines(inventories, fill)
 
     @staticmethod
     def update_lines(inventories):
@@ -82,11 +82,9 @@ class Inventory:
                     continue
                 if line.product.id in product_qty:
                     quantity, uom_id = product_qty.pop(line.product.id)
-                elif line.product.id in product2uom:
-                    quantity, uom_id = 0.0, product2uom[line.product.id]
                 else:
-                    quantity, uom_id = 0.0, line.product.default_uom.id
-                values = line.update_values4complete(quantity, uom_id)
+                    quantity = 0.0
+                values = line.update_values4complete(quantity)
                 if values:
                     Line.write([line], values)
 
