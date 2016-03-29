@@ -6,10 +6,10 @@ from trytond.pyson import Eval
 from trytond.transaction import Transaction
 
 __all__ = ['Inventory', 'InventoryLine']
-__metaclass__ = PoolMeta
 
 
 class Inventory:
+    __metaclass__ = PoolMeta
     __name__ = 'stock.inventory'
 
     @classmethod
@@ -90,6 +90,7 @@ class Inventory:
 
 
 class InventoryLine:
+    __metaclass__ = PoolMeta
     __name__ = 'stock.inventory.line'
 
     @staticmethod
